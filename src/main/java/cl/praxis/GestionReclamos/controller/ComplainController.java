@@ -1,6 +1,5 @@
-package cl.praxis.GestionReclamos.Controller;
+package cl.praxis.GestionReclamos.controller;
 
-import cl.praxis.GestionReclamos.model.repositories.ComplainRepository;
 import cl.praxis.GestionReclamos.model.service.ComplainService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

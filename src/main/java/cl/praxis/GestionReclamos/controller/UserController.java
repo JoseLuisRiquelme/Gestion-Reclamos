@@ -1,4 +1,4 @@
-package cl.praxis.GestionReclamos.Controller;
+package cl.praxis.GestionReclamos.controller;
 
 import org.springframework.stereotype.Controller;
 
