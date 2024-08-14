@@ -17,15 +17,15 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 public class SecurityConfig {
-    private final UserDetailsService userDetailsService;
+   /* private final UserDetailsService userDetailsService;*/
 
-    public SecurityConfig(UserDetailsService userDetailsService) {
+    /*public SecurityConfig(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
-    }
-    @Autowired
+    }*/
+   /* @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
+    }*/
 
     @Bean
     public PasswordEncoder passwordEncoder() {
