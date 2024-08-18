@@ -24,11 +24,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = repository.findByEmail(email);
-
-        if (user == null){
-            throw new UsernameNotFoundException("Usuario no encontrado");
-        }
+        User user = repository
+                .findByEmail(email)
+                .orElseThrow(()->
+             new UsernameNotFoundException("Usuario con email: "+email+" no encontrado"));
 
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(), user.getPassword(), mapperRoles(user.getRoles()));
@@ -37,7 +36,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private Collection<? extends GrantedAuthority> mapperRoles(List<Role> roles){
         return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .map(role -> new SimpleGrantedAuthority("ROLE_"+role.getName()))
                 .collect(Collectors.toList());
     }
 

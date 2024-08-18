@@ -17,6 +17,7 @@ public class Complain {
     private int id;
     private String title;
     private String description;
+    @Enumerated(EnumType.STRING)
     private Status status;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usr_id", nullable = false)
