@@ -25,20 +25,20 @@ public class SecurityConfig {
     public SecurityConfig(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
-    @Autowired
+    /*@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
+        auth.userDetailsService(userDetailsService);/*.passwordEncoder(passwordEncoder());
+    }*/
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+   /* @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
-    }
+    }*/
 
     @Bean
     public AuthenticationProvider authenticationProvider(UserDetailsServiceImpl userDetailService){
@@ -64,8 +64,8 @@ public class SecurityConfig {
                 // quedar en producción.
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/js/**", "/css/**","/register","/").permitAll()
-                        .requestMatchers("/complains/**").hasAnyRole("USR", "ADMIN")
-                        .requestMatchers("/newComplain/**").hasAnyRole("CLIENT","ADMIN")
+                        .requestMatchers("/js/**", "/css/**","/complains/**").hasAnyRole("USR", "ADMIN")
+                        .requestMatchers("/js/**", "/css/**","/newComplain/**").hasAnyRole("CLIENT","ADMIN")
                        /* .requestMatchers("/complains/**").hasAnyRole("USR", "ADMIN","CLIENT")
                         .requestMatchers("/complains/**").hasAnyRole("ADMIN")*/
                        //

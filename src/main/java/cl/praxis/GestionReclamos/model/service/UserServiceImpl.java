@@ -2,15 +2,18 @@ package cl.praxis.GestionReclamos.model.service;
 
 import cl.praxis.GestionReclamos.model.entities.User;
 import cl.praxis.GestionReclamos.model.repositories.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
-    UserRepository uRepo;
+    private final UserRepository uRepo;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository uRepo) {
+    public UserServiceImpl(UserRepository uRepo, PasswordEncoder passwordEncoder) {
         this.uRepo = uRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -25,6 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean create(User u) {
+        u.setPassword(passwordEncoder.encode(u.getPassword()));
         User result=uRepo.save(u);
         return result!=null;
     }
